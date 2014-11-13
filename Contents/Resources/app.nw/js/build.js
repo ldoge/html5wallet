@@ -1096,8 +1096,8 @@ Window.on("minimize", function() {
     var a = os.platform();
     !Config.minimizeToTray || "win32" != a && "win64" != a || (this.hide(), Z = new O.Tray({
         icon: "img/logo_small.png",
-        title: "I/O Coin"
-    }), Z.tooltip = "I/O Coin", Z.on("click", function() {
+        title: "Opal Coin"
+    }), Z.tooltip = "Opal Coin", Z.on("click", function() {
         Window.show();
         this.remove()
     }))
@@ -1107,13 +1107,13 @@ DEBUG && Window.showDevTools();
     Config.load();
     Theme.Q();
     Theme.U(Config.theme, Config.themeIsInternal);
-    Window.title = "I/O Coin Mk II Wallet v1.0.0";
-    $("#js-title").text("I/O Coin Mk II Wallet v1.0.0");
+    Window.title = "Opal Coin Mk II Wallet v1.0.0";
+    $("#js-title").text("Opal Coin Mk II Wallet v1.0.0");
     if ("darwin" == os.platform()) {
         var a = new O.Menu({
             type: "menubar"
         });
-        a.createMacBuiltin("I/O Coin");
+        a.createMacBuiltin("Opal Coin");
         Window.menu = a
     }
     $(".js-button-close").click(function() {
