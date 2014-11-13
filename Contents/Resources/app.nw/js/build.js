@@ -233,65 +233,6 @@ RPC = {
     }
 };
 var http = require("http");
-ions = {
-    u: function(a, b, c) {
-        function e(a) {
-            var c = "Could not get data from IONs servers.";
-            a && a.message && (c += " " + a.message);
-            b && Modal.alert("IONs Error", c)
-        }
-        http.get(a, function(a) {
-            var b = "";
-            a.on("data", function(a) {
-                b += a
-            });
-            a.on("end", function() {
-                try {
-                    var a = JSON.parse(b);
-                    c(a)
-                } catch (d) {
-                    e()
-                }
-            });
-            a.on("error", e)
-        }).on("error", e)
-    },
-    C: function(a) {
-        ions.u("http://ions.iocoin.io/api/address-book", !1, function(b) {
-            a(b.accounts)
-        })
-    },
-    register: function(a, b, c) {
-        function e(a) {
-            Modal.alert("Registration Failed", a)
-        }
-
-        function d() {
-            ions.u("http://ions.iocoin.io/api/register/" +
-                a + "/" + b, !0,
-                function(d) {
-                    d.successful ? ions.u("http://ions.iocoin.io/api/status/" + a + "-io/" + b, !0, function(a) {
-                        a.error ? e(a.error) : "awaiting-payment" === a.status && RPC.a.sendToAddress(a["payment-address"], parseFloat(a.fee), function(a) {
-                            a ? "ETIMEDOUT" != a.code && Modal.alert("RPC Error", a.message) : (Modal.alert("Registered Successfully", "Your ION has been registered and will be available once the payment is confirmed."), c())
-                        })
-                    }) : e(d.error)
-                })
-        }
-
-        function h() {
-            RPC.a.getBalance("*", 1, function(a, b) {
-                a ? "ETIMEDOUT" != a.code &&
-                    Modal.alert("RPC Error", a.message) : 201 > b ? e("You don't have enough IOC to pay the fee of 200 IOC.") : d()
-            })
-        }
-        RPC.a.e ? Modal.p("Unlock Wallet", "Enter your passphrase to unlock the wallet.", "Passphrase", function(a) {
-            RPC.a.walletPassphrase(a, 1, !1, function(a) {
-                a ? -14 == a.code ? Modal.j() : "ETIMEDOUT" != a.code && Modal.alert("RPC Error", a.message) : h()
-            });
-            return !0
-        }) : h()
-    }
-};
 assert = require("assert");
 
 function s(a, b) {
@@ -443,9 +384,6 @@ w.prototype.n = function() {
         a = a.find(".js-payment-panel");
     "none" != a.css("display") && (a.hide(), b.show());
     var c = this;
-    ions.C(function(a) {
-        c.d = a
-    });
     $(".js-status").show()
 };
 w.prototype.G = function() {
@@ -654,14 +592,6 @@ z.prototype = Object.create(s.prototype);
 var A = new z;
 z.prototype.n = function() {
     var a = this;
-    ions.C(function(b) {
-        var c = [];
-        b.forEach(function(a) {
-            c.push(a.address)
-        });
-        a.d = c;
-        A.c()
-    })
 };
 
 function B() {
@@ -696,9 +626,6 @@ function C() {
 function D() {
     var a = $(this),
         b = a.parent().find(".js-address").text();
-    a.hasClass("ions-on") || Modal.prompt("Register ION", "To register this address as an ION (for <strong>200.0 IOC</strong>) enter the name you want it to be displayed as.", "ION Name", function(a) {
-        ions.register(a, b, z.prototype.c.bind(A))
-    })
 }
 z.prototype.c = function() {
     var a = this.b,
@@ -715,7 +642,6 @@ z.prototype.c = function() {
             f.find(".js-address").text(a);
             f.find(".js-edit").click(C);
             f.find(".js-delete").click(B);
-            f.find(".js-ions").click(D); - 1 != e.d.indexOf(a) && f.find(".js-ions").removeClass("ions-off").addClass("ions-on");
             c.append(f)
         }
     });
@@ -730,7 +656,6 @@ z.prototype.c = function() {
             f.find(".js-address").text(a);
             f.find(".js-edit").click(C);
             f.find(".js-delete").click(B);
-            f.find(".js-ions").hide();
             c.append(f)
         }
     })
