@@ -1,0 +1,705 @@
+/* Fonts. */
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 300;
+    src: url("../../fonts/OpenSans-Light.ttf");
+}
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 400;
+    src: url("../../fonts/OpenSans-Regular.ttf");
+}
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 700;
+    src: url("../../fonts/OpenSans-Bold.ttf");
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+/* Body and wrapper definitions. */
+body {
+    background: #353a4d;
+    color: #969db6;
+    font-family: "Open Sans", sans-serif;
+    -webkit-user-select: none;
+    cursor: default;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    margin-right: 5px
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,0,0,0.4);
+}
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    background: rgb(63, 69, 92);
+    color: rgba(255, 255, 255, 0.6);
+    border: 0;
+    padding: 0 10px;
+    outline: 0;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+input:focus {
+    background-color: rgba(77, 83, 107, 1);
+}
+/* Random mix-ins. */
+.selectable {
+    -webkit-user-select: text;
+    cursor: text;
+}
+h1.tab-title {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+h2.tab-description {
+    font-size: 1em;
+    font-weight: 300;
+}
+.blurred {
+    /*-webkit-filter: blur(.8px);*/
+    -webkit-transform: scale(0.93);
+    -webkit-transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 0px 35px rgba(4, 3, 24, 0.6), 
+    0 0 20px #000;
+}
+.hide {
+    display: none;
+}
+
+/* Title bar. */
+.title-bar {
+    background: transparent;
+}
+.title-bar .title-bar-buttons {
+    position: absolute;
+    right: 0.7em;
+    top: 1em;
+}
+.title-bar .title-bar-buttons a {
+    color: rgba(63, 68, 83, 1);
+    margin-right: 0.2em;
+    font-size: 1em;
+    -webkit-app-region: no-drag;
+    -webkit-transition: opacity 0.2s ease-in-out;
+}
+.title-bar .title-bar-buttons a.lit,
+.title-bar .title-bar-buttons a.lit:hover {
+    color: #18ad90;;
+}
+.title-bar .title-bar-buttons a:hover {
+    color: rgba(76, 82, 100, 1);
+    cursor: pointer;
+}
+.title-bar span.tooltip {
+    position: absolute;
+    right: 0.35em;
+    width: 100px;
+    top: 3em;
+    color: #ccc;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: rgba(63, 68, 83, 1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.41);
+    padding: 3px;
+    border-radius: 2px;
+    -webkit-transition: all 0.2s ease-in-out;
+    display: inline;
+    opacity: 0;
+}
+.title-bar span.tooltip:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(80, 80, 80, 0);
+    border-bottom-color: rgba(63, 68, 83, 1);
+    border-width: 6px;
+    margin-left: -6px;
+}
+.title-bar-buttons span.second {
+    right: 2.2em;
+}
+.title-bar span.third {
+    right: 3.9em;
+}
+.title-bar-buttons a:hover > span.tooltip {
+    opacity: 1;
+}
+/* The Modal Pop-up. */
+.modal-popup-bg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 650px;
+    height: 500px;
+    background-color: black;
+    opacity: 0.3;
+}
+.modal-popup {
+    background-image: -webkit-gradient( linear, left top, left bottom, 
+    color-stop(0, rgb(236, 236, 236)), 
+    color-stop(1, rgb(191, 191, 191)) );
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 24%;
+    padding: 15px 25px;
+    width: 300px;
+    color: #555;
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.15s ease-in-out;
+    overflow-wrap: break-word;
+}
+.modal-popup p {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin: 0.6em 0;
+}
+span.modal-title {
+    color: #222;
+    display: inherit;
+    text-align: center;
+    font-weight: 700;
+} 
+.modal-popup label {
+    display: block;
+    margin-bottom: 7px;
+}
+.modal-popup input {
+    background: #fff;
+    width: 100%;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    box-sizing: border-box;
+    outline: 0;
+    border-radius: 2px;
+    border: 1px solid #B1B1B1;
+    box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.69), 
+                inset 0px 1px 1px rgba(0, 0, 0, 0.21);
+    color: #666;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+.modal-popup input:focus {
+    box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.4),
+                0 1px 1px rgba(255, 255, 255, 0.6);
+    border-color: rgba(0, 0, 0, 0.4);
+}
+.modal-popup .buttons {
+    margin-top: 10px;
+}
+.modal-popup .buttons {
+    background-color: #1fd27c;
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-top: 2em;
+}
+.modal-popup a.button {
+    color: #fff;
+    padding: 0 0.36em;
+    font-size: 1.6em;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+.modal-popup a.button i {
+    position: relative;
+    top: 2px;
+}
+.modal-popup .button-cancel {
+    margin-left: 11px;
+}
+.modal-popup a.button:hover {
+    border-radius: 30px;
+    box-shadow: inset 0 2px 50px rgba(29, 146, 85, 0.94);
+}
+/* Payment Panel. */
+.payment-panel {
+    margin-top: 6%;
+}
+.payment-panel form {
+    margin-left: 14%;
+}
+.payment-panel .label {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    margin: 10px 0;
+    font-size: 1em;
+    text-transform: uppercase;
+    position: relative;
+    top: 2.8em;
+    left: 1em;
+    width: 12%;
+    transition: all 0.3s ease-in-out;
+}
+.payment-panel .active {
+    top: 0;
+}
+.payment-panel .label .address {
+    font-weight: 700;
+    text-transform: none;
+}
+.payment-panel .inputs input {
+    height: 45px;
+    width: 450px;
+    font-size: 1.3em;
+}
+.payment-button {
+    background-color: rgb(27, 27, 39);
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #e4e4e7;
+    border-radius: 2px;
+    margin-top: 5%;
+    margin-left: 25%;
+    display: inline-block;
+    padding: 10px 25px;
+    position: relative;
+    top: -2px;
+}
+.payment-button:hover {
+    background-color: rgba(27, 27, 39, 0.8);
+}
+.payment-button:active {
+    background-color: rgba(27, 27, 39, 1);
+}
+.payment-panel i {
+    position: relative;
+    right: 0.2em;
+    top: 0.1em;
+}
+.payment-panel ul.suggestion-box {
+    width: 72.5%;
+    border: 0;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+.payment-panel ul.suggestion-box li {
+    list-style: none;
+    border-bottom: 1px solid rgba(27, 27, 39, 0.7);
+}
+.payment-panel ul.suggestion-box li a {
+    background-color: rgb(27, 27, 39);
+    border-bottom: 1px solid rgba(27, 27, 39, 0.7);
+    display: block;
+    padding: 0.5em;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+.payment-panel ul.suggestion-box li a:hover {
+    background-color: rgba(39, 39, 54, 1);
+}
+
+.payment-panel ul.suggestion-box .suggestion-address {
+    font-size: 0.9em;
+    font-weight: 300;
+    opacity: 0.7;
+}
+.payment-panel ul.suggestion-box i.icon-right-circled {
+    float: right;
+    font-size: 1.5em;
+    margin: 0.5em;
+    color: rgba(255, 255, 255, 0.3);
+}
+.tab-text {
+    color: #e4e4e7;
+    text-align: center;
+    line-height: 1em;
+}
+
+/* Balance Panel. */
+.balance-panel {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 10%;
+    line-height: 5em;
+}
+.balance-panel span.spendable-label {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.balance-panel .spendable {
+    font-size: 6em;
+    font-weight: 400;
+    color: #5e647d;
+    background-color: #1b1b27;
+    border-radius: 2px;
+    padding: 0 0.2em;
+    line-height: 1.5em;
+}
+.spendable-decimal {
+    font-size: 0.7em !important;
+}
+.balance-panel .non-spendable {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+.balance-panel .non-spendable #data-unconfirmed-balance {
+    -webkit-user-select: text;
+    cursor: text;
+}
+.balance-panel .non-spendable .label {
+    font-weight: 300;
+    color: #fff;
+    opacity: 0.7;
+}
+.balance-panel .staking {
+    background: #1b1b27 url("../../img/pickaxe-dark.png") no-repeat left;
+    background-position: 0.25em;
+    color: #5e647d;
+}
+.sync progress::-webkit-progress-bar {
+    background: #1B1B27;
+    border-radius: 20px;
+    padding: 2px;
+    box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sync progress::-webkit-progress-value {
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+    background:
+        -webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+        -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
+        #18ad90;
+    background-size: 25px 14px, 100% 100%, 100% 100%;
+    -webkit-animation: lines 5s linear 0 infinite;
+}
+.sync .caption {
+    color: rgba(255, 255, 255, 0.3);
+}
+.status {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8em;
+}
+/* Transaction Panel. */
+.tab-transaction-content, 
+.tab-address-book-content {
+    overflow-y: scroll; 
+    height: 420px;
+    padding: 0 10px;
+}
+nav.list-controls {
+    float: right;
+    margin-right: 2px;
+    margin: 0.1em 0;
+} 
+nav.list-controls ul {
+    background: rgb(27, 27, 39);
+    padding: 0;
+    border-radius: 2px;
+}
+nav.list-controls ul li {
+    display: inline-block;
+    padding: 0;
+}
+nav.list-controls li a {
+    color: #e4e4e7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 700;
+    display: block;
+    padding: 0.6em 0.8em;
+    margin-left: -4px;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+nav.list-controls li:first-child > a {
+    border-left: 0; 
+    margin-left: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+nav.list-controls li:last-child > a {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+nav.list-controls a:hover, a.active {
+    background-color: #18ad90;
+    color: #fff;
+}
+
+.transaction-container, 
+.address-book-container {
+    background-color: rgba(131, 164, 235, 0.13);
+    color: #e4e4e7;
+    font-size: 1.3em;
+    margin-top: 1em !important;
+    line-height: 2em;
+    padding: 20px 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+}
+.transaction-amount {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+.transaction-address {
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-top: 0.7em;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0 7px;
+}
+.transaction-date, .transaction-confirmation {
+    font-size: 0.8em;
+    font-weight: 300;
+    opacity: 0.5;
+    position: relative;
+    top: 0.7em;
+}
+.transaction-confirmation {
+    float: right;
+}
+.tab-transaction-content .sent .transaction-amount,
+.tab-transaction-content .received .transaction-amount {
+    background-color: #353A4D;
+    display: inline;
+    font-weight: 700;
+    color: #CE4141;
+    padding: 5px 7px;
+    border-radius: 2px;
+
+}
+.tab-transaction-content .received .transaction-amount {
+    color: #18ad90;
+}
+.transaction-container i {
+    font-size: 1em;
+    opacity: 0.5;
+    position: relative;
+    top: 0.1em;
+}
+
+/* Address Book Panel. */
+.tab-address-book-content .tab-text {
+    text-align: left;
+}
+.tab-address-book-content .address-book-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0 10px;
+    margin-top: 0 !important;
+}
+.address-book-container:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.address-book-name {
+    font-weight: 700;
+}
+.address-book-address {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 3px 10px;
+    margin-left: 0.5em;
+    font-weight: 300;
+    font-size: 0.7em;
+    border-radius: 5px;
+    position: relative;
+}
+.address-book-address::after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: rgba(255, 255, 255, 0.2);
+    border-width: 7px;
+    margin-top: -7px;
+}
+.address-book-container .button-controls {
+    float: right;
+    clear: right;
+    right: 2em;
+    font-size: 0.7em;
+    margin: 0.1em 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease-in-out;
+}
+.address-book-container:hover > .button-controls {
+    opacity: 1;
+}
+.address-book-container .button-controls a {
+    margin: 0 0.2em;
+    opacity: 0.5;
+    -webkit-transition: opacity 0.2s ease-in-out;
+}
+.address-book-container .button-controls a:hover {
+    opacity: 0.9;
+} 
+.tab-address-book-content hr {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 1px;
+    border: 0;
+    margin: 1.7em 0;
+}
+.tab-address-book-content .address-book-search {
+    margin: 1.1em 0;
+    display: none;
+}
+.tab-address-book-content .address-book-search input {
+    background: rgba(255, 255, 255, 0.1);
+    width: 70%;
+    border: 0;
+    padding: 0.6em;
+}
+.tab-address-book-content .address-book-search input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+.tab-panel {
+    background-color: #1b1b27;
+    border-bottom: 5px solid #18ad90;
+    overflow: hidden;
+    -webkit-app-region: drag;
+}
+.tab-panel ul {
+    padding: 0;
+    margin: 0;
+}
+.tab-panel ul li {
+    display: inline;
+}
+.tab-panel a {
+    float: left;
+    background-color: #1b1b27;
+    color: #e4e4e7;
+    padding: 1.2em 1.5em;
+    font-size: 0.9em;
+    -webkit-app-region: no-drag;
+    -webkit-transition: background-color 0.2s ease-in-out;
+}
+.tab-panel span {
+    display: block;
+}
+.tab-panel i {
+    display: none;
+}
+.tab-panel a:hover {
+    background-color: #272738;
+    color: #eef6fd;
+}
+.tab-panel .active {
+    background: #18ad90;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.tab-panel li:first-child .active {
+    border-top-left-radius: 0;
+}
+.tab-panel .active:hover {
+    background-color: #18ad90;
+}
+
+a.button-send, 
+a.button
+a.payment-button, 
+a.button-export  {
+    background-color: #18ad90;
+    border-radius: 2px;
+    padding: 0.2em 0.8em;
+    font-size: 1.5em;
+}
+a.button-send i {
+    position: relative;
+    right: 0.2em;
+    font-size: 0.85em;
+}
+a.button-send:hover, a.button-export:hover {
+    background-color: rgba(24, 173, 144, 0.6);
+}
+.settings-panel {
+    color: #fff;
+    padding: 0 10px 10px 20px;
+    overflow-y: scroll;
+    height: 400px;
+}
+.settings-panel h2 {
+    font-weight: 300;
+    border-bottom: 1px solid rgba(255,255,255,0.20);
+}
+.settings-panel .label {
+    position: relative;
+    top: 2.2em;
+    left: 0.7em;
+    z-index: -1;
+    font-weight: 700;
+    color: #fff;
+}
+.settings-panel input[type="checkbox"] .checkbox-label {
+    margin: 10px !important;
+}
+.settings-panel input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    display: inline;
+    padding: 10px;
+}
+.settings-panel .checkbox-label {
+    display: block;
+    padding-bottom: 5px;
+}
+.settings-panel .checkbox-label span {
+    position: relative;
+    bottom: 3px;
+    left: 10px;
+}
+.settings-panel .settings-themes a {
+    display: inline;
+    width: 195px;
+    margin: 0.1em;
+    position: relative;
+}
+.settings-panel .settings-themes span {
+    background-color: rgba(24, 173, 144, 0.9);
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 195px;
+    height: 150px;
+    font-weight: 700;
+    z-index: 2;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease-in-out;
+}
+.settings-panel .settings-themes a:hover > span {
+    opacity: 1;
+}
+.settings-panel .button-export {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 700;
+    position: relative;
+    top: 0;
+}

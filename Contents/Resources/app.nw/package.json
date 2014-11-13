@@ -1,0 +1,18 @@
+{
+    "name": "iocoin",
+    "main": "index.html",
+    "description": "I/O Coin Mk II wallet",
+    "version": "1.0.2",
+    "dependencies": {
+        "bitcoin": "2.x",
+        "csv-parse": "0.0.6"
+    },
+
+    "window": {
+        "toolbar": false,
+        "frame": false,
+        "width": 650,
+        "height": 500,
+        "resizable": false
+    }
+}
