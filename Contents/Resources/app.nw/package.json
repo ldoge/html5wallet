@@ -1,8 +1,8 @@
 {
-    "name": "iocoin",
+    "name": "LiteDoge",
     "main": "index.html",
-    "description": "I/O Coin Mk II wallet",
-    "version": "1.0.2",
+    "description": "Litedoge Wallet",
+    "version": "1.0.0",
     "dependencies": {
         "bitcoin": "2.x",
         "csv-parse": "0.0.6"
